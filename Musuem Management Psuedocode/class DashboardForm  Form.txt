@@ -1,0 +1,53 @@
+class DashboardForm : Form
+{
+    string userRole;
+
+    constructor DashboardForm(role)
+        call InitializeComponent()
+        set userRole = role
+
+        // Apply user access restrictions
+        call RestrictAccessBasedOnRole(userRole)
+
+        // Load dashboard data into labels
+        set lblRevenue.Text = GetTodaysRevenue()
+        set lblUpcomingBookings.Text = GetUpcomingBookingCount()
+
+    // Event: Click on 'Expeditions'
+    method BtnExpeditions_Click
+        open ExpeditionForm
+
+    // Event: Click on 'Bookings'
+    method BtnBookings_Click
+        open BookingForm
+
+    // Event: Click on 'Customers'
+    method BtnCustomers_Click
+        open CustomerForm
+
+    // Event: Click on 'Employees'
+    method BtnEmployees_Click
+        open EmployeeForm
+
+    // Event: Click on 'Earnings'
+    method BtnEarnings_Click
+        open EarningsForm
+
+    // Event: Click on 'Exhibitions'
+    method BtnAvailableExhibitions_Click
+        open ExhibitionForm
+
+    // Event: Click on 'Manage Managers'
+    method BtnManageManagers_Click
+        open ManagerForm
+
+    // Event: Click on 'Logout'
+    method BtnLogout_Click
+        open LoginForm
+        close current form
+
+    // Method: Role-based visibility
+    method RestrictAccessBasedOnRole(role)
+        if role is not Admin
+            hide btnManageManagers
+}

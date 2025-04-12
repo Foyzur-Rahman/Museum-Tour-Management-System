@@ -1,0 +1,62 @@
+expeditonform. desinger
+    Declare necessary components:
+        - DataGridView for Expeditions (dgvExpeditions)
+        - DataGridView for Customers (dgvCustomers)
+        - Labels for Expeditions and Customers (lblExpeditions, lblCustomers)
+        - Panel for content (contentPanel)
+        - Back Button (btnBack)
+
+    Method Dispose:
+        - If components are initialized, dispose of them properly
+
+    Method InitializeComponent:
+        - Set label for Expeditions (lblExpeditions):
+            - Text: "All Expeditions"
+            - Font: Arial, 14, Bold
+            - Dock: Top
+            - Height: 40
+            - Text Alignment: Center
+
+        - Set properties for Expedition DataGridView (dgvExpeditions):
+            - Dock: Top
+            - Height: 200
+            - Background Color: White
+            - Auto Size Columns: Fill
+            - Selection Mode: Full Row Select
+            - Add Event Handler for Cell Click
+
+        - Set label for Customers (lblCustomers):
+            - Text: "Customers in Expedition"
+            - Font: Arial, 14, Bold
+            - Dock: Top
+            - Height: 40
+            - Text Alignment: Center
+
+        - Set properties for Customer DataGridView (dgvCustomers):
+            - Dock: Fill
+            - Background Color: White
+            - Auto Size Columns: Fill
+            - Selection Mode: Full Row Select
+            - Add "Booking Status" column
+
+        - Set up Content Panel (contentPanel):
+            - Dock: Fill
+            - Padding: 20
+            - Add the Customer DataGridView, Customer Label, Expedition DataGridView, and Expedition Label
+
+        - Set up Back Button (btnBack):
+            - Text: "Back"
+            - Font: Arial, 10, Bold
+            - Size: 100x30
+            - Location: (20, 20)
+            - Add Click Event Handler
+
+        - Add the Back Button to the form's Controls
+
+        - Set up Form properties:
+            - Title: "Expedition Management"
+            - Size: 700x500
+            - Start Position: Center Screen
+            - Load Event Handler
+
+End

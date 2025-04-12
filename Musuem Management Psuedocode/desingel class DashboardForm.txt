@@ -1,0 +1,28 @@
+partial class DashboardForm
+{
+    method InitializeComponent
+        create panel sidePanel
+        create label lblTitle
+        create panel contentPanel
+
+        // Add buttons to sidePanel
+        add btnExpeditions to sidePanel
+        add btnCustomers to sidePanel
+        add btnBookings to sidePanel
+        add btnManageManagers to sidePanel
+        add btnLogout to sidePanel
+
+        // Configure labels and buttons inside contentPanel
+        add lblRevenue to contentPanel
+        add lblUpcomingBookings to contentPanel
+        add btnEarnings to contentPanel
+        add btnEmployees to contentPanel
+        add btnAvailableExhibitions to contentPanel
+
+        // Set styling, size, location, fonts, etc. for all controls
+
+        // Final layout
+        add lblTitle to form (top)
+        add sidePanel to form (left)
+        add contentPanel to form (fill rest of space)
+}

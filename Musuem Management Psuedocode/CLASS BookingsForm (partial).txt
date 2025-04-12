@@ -1,0 +1,37 @@
+CLASS BookingsForm (partial)
+
+    DECLARE UI components:
+        - DataGridView dgvBookings
+        - DateTimePicker dtpStartDate
+        - DateTimePicker dtpEndDate
+        - Button btnFilter
+        - Button btnBack
+
+    METHOD Dispose(disposing)
+        - IF disposing AND components are not null:
+            > Dispose of components
+        - Call base.Dispose(disposing)
+
+    METHOD InitializeComponent()
+        - Instantiate all UI components
+
+        - Configure dgvBookings:
+            > Set location, size, name, and other basic properties
+
+        - Configure dtpStartDate:
+            > Set location and size for start date picker
+
+        - Configure dtpEndDate:
+            > Set location and size for end date picker
+
+        - Configure btnFilter:
+            > Set location, size, text
+            > Assign Click event handler (btnFilter_Click)
+
+        - Configure btnBack:
+            > Set location, size, text
+            > Assign Click event handler (btnBack_Click)
+
+        - Add all controls to the form's Controls collection
+
+        - Finalize layout and form properties

@@ -1,0 +1,24 @@
+CLASS CustomerForm : Form
+
+    CONSTRUCTOR
+        Initialize UI components
+
+    METHOD CustomerForm_Load
+        - When the form loads:
+            > Call LoadCustomerData to populate data grid
+            > Bring back button to front for visibility
+
+    METHOD LoadCustomerData
+        - Fetch all customer data from the database as DataTable
+        - Bind the data to the DataGridView (dgvCustomers)
+
+        - FOR each column in the grid:
+            > IF column is not "Name" or "Email":
+                - Hide it
+
+        - Rename column headers:
+            > "Name" => "Customer Name"
+            > "Email" => "Email Address"
+
+    METHOD btnBack_Click
+        - Close the form to return to the previous screen

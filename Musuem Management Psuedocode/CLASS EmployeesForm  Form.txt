@@ -1,0 +1,8 @@
+CLASS EmployeesForm : Form
+
+    CONSTRUCTOR
+        Initialize the form components
+
+    METHOD EmployeesForm_Load(sender, e)
+        SET DataSource of dgvEmployees to list of all employees
+        (fetched from the database using GetAllEmployeesDataTable)

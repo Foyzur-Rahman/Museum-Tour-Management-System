@@ -1,0 +1,32 @@
+CLASS BookingsForm : Form
+
+    CONSTRUCTOR
+        Initialize form components
+        Attach Load event handler (BookingsForm_Load)
+
+    METHOD BookingsForm_Load(sender, e)
+        CALL LoadBookings
+
+    METHOD LoadBookings
+        TRY
+            Fetch all bookings from the database into a DataTable
+            Set the DataSource of dgvBookings to this DataTable
+
+            Configure column headers and visibility:
+                - Hide BookingID
+                - Rename headers for CustomerName, ExpeditionName, BookingDate, TimeSlot, and Status
+
+            FOR each row in the grid
+                IF ExpeditionID exists
+                    Fetch the TimeSlot for that ExpeditionID
+                    Update the TimeSlot cell in the row
+
+        CATCH Exception
+            Show error message if loading bookings fails
+
+    METHOD btnFilter_Click(sender, e)
+        Get start and end date from date pickers
+        Apply row filter to DataGridView to show only bookings within date range
+
+    METHOD btnBack_Click(sender, e)
+        Close the form (return to previous window)

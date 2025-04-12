@@ -1,0 +1,17 @@
+employdesinger
+
+    Declare components:
+        - DataGridView for Employees (dgvEmployees)
+
+    Method Dispose:
+        - If components exist, dispose of them to release resources
+
+    Method InitializeComponent:
+        - Create and initialize the DataGridView for employees (dgvEmployees):
+            - Set the Dock property to Fill (to occupy the entire form space)
+            - Set Auto-size columns mode to Fill (adjust columns to fit the available space)
+            - Set Selection Mode to FullRowSelect (allow selecting full rows)
+        
+        - Add the dgvEmployees DataGridView to the form’s Controls collection
+
+End

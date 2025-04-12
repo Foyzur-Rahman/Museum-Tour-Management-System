@@ -1,0 +1,69 @@
+CLASS ManageEmployeesForm : Form
+
+    FIELDS:
+        - DataGridView dgvEmployees
+        - Button btnBack, btnHire, btnFire
+        - DashboardForm dashboard (for real-time updates)
+
+    CONSTRUCTOR(parentDashboard)
+        Set parent dashboard reference
+        Initialize layout and controls
+        Load employees into grid
+
+    METHOD InitializeLayout
+        Set form title, size, background
+        Create a TableLayoutPanel to organize UI sections
+
+        Add a title label to the top
+        Create a button panel with:
+            - Back button (closes the form)
+            - Hire button (triggers BtnHire_Click)
+            - Fire button (triggers BtnFire_Click)
+        Add the buttons to button panel
+
+        Initialize the DataGridView with:
+            - Read-only
+            - Auto-size columns
+            - No multi-selection
+        Add DataGridView to the layout
+
+        Add everything to form controls
+
+    METHOD LoadEmployees
+        TRY
+            Get all employees from the database
+            Bind to dgvEmployees
+            Hide the "EmployeeID" column
+            Trigger dashboard to update employee count
+        CATCH
+            Show error message on failure
+
+    METHOD BtnHire_Click
+        Prompt for employee name
+        IF valid input
+            TRY
+                Add employee to database with role "Employee"
+                Reload grid
+            CATCH
+                Show error message
+
+    METHOD BtnFire_Click
+        IF a row is selected
+            Get employee name and ID from row
+            Ask user for confirmation
+            IF confirmed
+                TRY
+                    Delete employee by ID
+                    Reload grid
+                CATCH
+                    Show error message
+        ELSE
+            Show message asking to select an employee
+
+    STATIC CLASS Prompt
+        METHOD Show(text, caption)
+            Create a small modal form with:
+                - A label showing the prompt text
+                - A textbox for input
+                - An OK button
+            Show dialog and return entered text

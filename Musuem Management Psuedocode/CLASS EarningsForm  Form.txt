@@ -1,0 +1,62 @@
+CLASS EarningsForm : Form
+
+    FIELDS:
+        - DashboardForm dashboard
+        - Label lblRevenue
+        - TextBox txtAmount
+        - Button btnAdd, btnDelete
+        - ListBox lstEarnings
+
+    CONSTRUCTOR(parent)
+        Assign parent dashboard
+        Initialize layout and UI
+        Load earnings from database
+
+    METHOD InitializeLayout
+        - Set window title, size, color
+        - Create and style revenue label
+        - Create a table layout for inputs and earnings list
+            > Label for input
+            > TextBox for amount
+            > Button to add earnings
+            > Button to delete selected earning
+            > ListBox for showing today's earnings
+        - Add all components to form
+
+    METHOD LoadEarningsData
+        TRY
+            Get today's total revenue from database
+            Update lblRevenue with formatted total
+
+            Clear list box
+            Fetch all earnings from database
+            FOR each earning:
+                IF earning's date is today:
+                    Add to lstEarnings
+
+            Trigger dashboard to refresh its revenue display
+        CATCH error
+            Show error message
+
+    METHOD BtnAdd_Click
+        IF txtAmount is a valid decimal number:
+            TRY
+                Save new earning to database
+                Clear the textbox
+                Reload earnings list and update display
+            CATCH error
+                Show error message
+        ELSE
+            Show input validation warning
+
+    METHOD BtnDelete_Click
+        IF an earning is selected from lstEarnings:
+            Prompt for delete confirmation
+            IF user confirms:
+                TRY
+                    Delete earning by ID from database
+                    Reload earnings list
+                CATCH error
+                    Show error message
+        ELSE
+            Show message asking to select an earning

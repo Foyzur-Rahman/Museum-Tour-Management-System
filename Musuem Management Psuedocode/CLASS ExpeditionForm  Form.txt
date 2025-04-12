@@ -1,0 +1,49 @@
+CLASS ExpeditionForm : Form
+
+    CONSTRUCTOR
+        Initialize form
+        On load, call ExpeditionForm_Load
+
+    METHOD ExpeditionForm_Load(sender, e)
+        CALL LoadExpeditions()
+
+    METHOD LoadExpeditions()
+        TRY
+            FETCH all expeditions from database
+            IF expeditions exist
+                FOR each expedition
+                    IF TimeSlot exists
+                        PARSE TimeSlot to TimeSpan
+                        CONVERT to readable time format (hh:mm tt)
+                    ELSE
+                        SET TimeSlot = "N/A"
+                DISPLAY expeditions in DataGridView (dgvExpeditions)
+                SET column visibility and headers
+            ELSE
+                SHOW message: No expeditions found
+        CATCH Exception
+            SHOW error message
+
+    EVENT dgvExpeditions_CellClick(sender, e)
+        IF clicked row is valid
+            TRY
+                GET ExpeditionID from clicked row
+                CALL LoadCustomersForExpedition(expeditionID)
+            CATCH Exception
+                SHOW error message
+
+    METHOD LoadCustomersForExpedition(expeditionID)
+        TRY
+            FETCH customers signed up for expedition
+            IF customers exist
+                SET BookingStatus = "Confirmed" for each
+                DISPLAY in dgvCustomers
+                SET column headers and visibility
+            ELSE
+                CLEAR dgvCustomers
+                SHOW message: No attendees
+        CATCH Exception
+            SHOW error message
+
+    EVENT btnBack_Click(sender, e)
+        CLOSE form (return to Dashboard)

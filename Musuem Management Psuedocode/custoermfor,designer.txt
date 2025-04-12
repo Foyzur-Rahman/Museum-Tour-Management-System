@@ -1,0 +1,53 @@
+custoermfor,designer
+
+    Declare necessary components:
+        - DataGridView for Customers (dgvCustomers)
+        - Label for Title (lblTitle)
+        - Panel for content (contentPanel)
+        - Back Button (btnBack)
+
+    Method Dispose:
+        - If components are initialized, dispose of them properly
+
+    Method InitializeComponent:
+        - Set up Customer DataGridView (dgvCustomers):
+            - Disable row addition and deletion by users
+            - Auto-size columns to fill available space
+            - Set background color to White
+            - Set border style to Fixed3D
+            - Dock: Fill
+            - Set the location of the DataGridView
+            - Set Selection Mode to Full Row Select
+
+        - Set up Title Label (lblTitle):
+            - Set background color to a dark shade
+            - Set font to Arial, 16, Bold
+            - Set text color to White
+            - Set label location and size
+            - Set text to "Customer Management"
+            - Center the text horizontally and vertically
+
+        - Set up Content Panel (contentPanel):
+            - Dock: Fill
+            - Padding: 20
+            - Add DataGridView and Title Label inside the content panel
+
+        - Set up Back Button (btnBack):
+            - Position: Top left corner (10, 10)
+            - Size: 100x30
+            - Font: Arial, 10, Bold
+            - Background color: White
+            - Foreground color: Black
+            - Set FlatStyle to Flat for visual styling
+            - Add Click event handler to the button
+
+        - Add Back Button to the form’s Controls
+
+        - Set up Form properties:
+            - Client size: 861x553
+            - Add content panel and title label to form’s Controls
+            - Set form title: "Customer Management"
+            - Set form's Start Position: Center Screen
+            - Add Load event handler to form
+
+End

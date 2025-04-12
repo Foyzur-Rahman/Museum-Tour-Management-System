@@ -1,0 +1,92 @@
+class Database
+{
+    method GetConnection
+        return SqlConnection using connectionString
+
+    method GetTodaysEarningsRevenue
+        open connection
+        run SQL: SUM(Amount) from Earnings where Date = today
+        return result
+
+    method GetUpcomingBookings
+        open connection
+        run SQL: COUNT(*) from Bookings where Status = 'Confirmed'
+        return result
+
+    method GetAllCustomers
+        open connection
+        run SQL JOIN Customers, Bookings, Expeditions
+        for each record
+            create CustomerExpedition object
+        return list of customers
+
+    method GetAllExpeditions
+        open connection
+        run SQL SELECT ExpeditionID, ExpeditionName, TimeSlot from Expeditions
+        return list of Expedition objects
+
+    method GetCustomerExpeditions(expeditionID)
+        open connection
+        run SQL: join customers and bookings for given expedition ID
+        return list of CustomerExpedition objects
+
+    method GetAllBookings
+        open connection
+        run SQL: join bookings, customers, expeditions
+        return DataTable of bookings
+
+    method GetExpeditionTimeSlot(expeditionID)
+        open connection
+        run SQL: SELECT TimeSlot from Expeditions where ID = expeditionID
+        return time slot
+
+    method GetAllEmployeesDataTable
+        open connection
+        run SQL: SELECT EmployeeID, Name, Position from Employees
+        return DataTable
+
+    method GetAvailableExhibitions
+        open connection
+        run SQL: SELECT exhibitions with TicketsAvailable > 0
+        return DataTable
+
+    method AddEarning(amount)
+        open connection
+        run SQL: INSERT INTO Earnings (amount, date)
+
+    method GetDailyEarnings
+        open connection
+        run SQL: SUM(Amount) GROUP BY DateAdded
+        return Dictionary<DateTime, decimal>
+
+    method GetAllEarnings
+        open connection
+        run SQL: SELECT * FROM Earnings ORDER BY Date
+        return list of Earning objects
+
+    method DeleteEarningByDateAndAmount(date, amount)
+        open connection
+        run SQL: DELETE FROM Earnings WHERE Date = date AND Amount = amount LIMIT 1
+
+    method DeleteEarningById(id)
+        open connection
+        run SQL: DELETE FROM Earnings WHERE ID = id
+
+    method AddEmployee(name, position)
+        open connection
+        run SQL: INSERT INTO Employees (name, position)
+
+    method DeleteEmployeeById(id)
+        open connection
+        run SQL: DELETE FROM Employees WHERE ID = id
+
+    method GetTotalEmployees
+        open connection
+        run SQL: SELECT COUNT(*) FROM Employees
+        return result
+
+    method GetAllCustomersDataTable
+        open connection
+        run SQL: SELECT * FROM Customers
+        return DataTable
+}

@@ -1,0 +1,13 @@
+Start
+availableexhibiton
+    Declare the AvailableExhibitionsForm class as a Form with necessary components
+
+    Method AvailableExhibitionsForm:
+        - Initialize the form components
+
+    Method AvailableExhibitionsForm_Load:
+        - When the form is loaded, set the data source of the DataGridView (dgvAvailableExhibitions)
+        - Fetch available exhibitions from the database using Database.GetAvailableExhibitions() method
+        - Display the available exhibitions in the DataGridView (dgvAvailableExhibitions)
+
+End
