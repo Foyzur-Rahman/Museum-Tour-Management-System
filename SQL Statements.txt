@@ -1,0 +1,232 @@
+﻿SQL Statements Created by Tamjid Karim and Foyzur Rahman
+
+
+Create Database Called MuseumDB
+CREATE DATABASE MuseumDB;
+GO
+
+
+Use MuseumDB Database
+USE MuseumDB;
+GO
+
+
+Managers Table
+CREATE TABLE Managers (
+    ManagerID INT PRIMARY KEY IDENTITY(1,1),
+    Username NVARCHAR(50) NOT NULL UNIQUE,
+    Password NVARCHAR(50) NOT NULL,
+    Role NVARCHAR(20) NOT NULL DEFAULT 'Admin'
+);
+
+
+Expeditions Table
+CREATE TABLE Expeditions (
+    ExpeditionID INT PRIMARY KEY IDENTITY(1,1),
+    ExpeditionName NVARCHAR(100) NOT NULL,
+    Type NVARCHAR(50) NOT NULL,
+    Description TEXT,
+    TimeSlot TIME NOT NULL DEFAULT '09:00'
+);
+
+
+Customers Table
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) NOT NULL UNIQUE
+);
+
+
+Bookings Table
+CREATE TABLE Bookings (
+    BookingID INT PRIMARY KEY IDENTITY(1,1),
+    CustomerID INT NOT NULL,
+    ExpeditionID INT NOT NULL,
+    BookingDate DATETIME NOT NULL DEFAULT GETDATE(),
+    TimeSlot TIME NOT NULL DEFAULT '09:00',
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (ExpeditionID) REFERENCES Expeditions(ExpeditionID)
+);
+
+
+Insert Managers
+INSERT INTO Managers (Username, Password, Role) VALUES 
+('admin', 'admin123', 'Admin'),
+('manager1', 'manager123', 'Manager');
+
+
+Insert Expeditions
+INSERT INTO Expeditions (ExpeditionName, Type, Description, TimeSlot) VALUES 
+('Ancient Egypt Tour', 'History', 'Explore ancient Egyptian artifacts.', '09:00'),
+('Dinosaur Fossils', 'Paleontology', 'View rare dinosaur bones.', '11:00'),
+('Modern Art', 'Art', 'A collection of modern art from around the world.', '13:00'),
+('Astronomy Dome Experience', 'Science', 'Experience space like never before.', '15:00'),
+('World War History Talk', 'History', 'A deep dive into World War history.', '17:00');
+
+
+Insert Customers
+INSERT INTO Customers (Name, Email) VALUES 
+('John Doe', 'johndoe@example.com'),
+('Jane Smith', 'janesmith@example.com'),
+('Alice Johnson', 'alice.johnson@example.com'),
+('Mark Stevens', 'mark.stevens@example.com'),
+('Emily Carter', 'emily.carter@example.com'),
+('Michael Brown', 'michael.brown@example.com'),
+('Sarah Davis', 'sarah.davis@example.com');
+
+
+Insert Bookings
+INSERT INTO Bookings (CustomerID, ExpeditionID, TimeSlot) VALUES 
+(1, 1, '09:00'),
+(2, 2, '11:00'),
+(3, 3, '13:00'),
+(4, 4, '15:00'),
+(5, 5, '17:00');
+
+
+Step 1: Add the column 
+ALTER TABLE Bookings ADD Status VARCHAR(20) DEFAULT 'Confirmed'; 
+GO 
+
+
+
+
+
+
+Step 2: Booking Status
+ UPDATE Bookings SET Status = 'Confirmed';
+
+
+
+
+Enable manual insertion into identity column for Customers table
+SET IDENTITY_INSERT Customers ON;
+
+
+Insert new customer records with explicit CustomerID values
+INSERT INTO Customers (CustomerID, Name, Email) 
+VALUES
+    (8, 'Tamjid Karim', 'tamjid@example.com'),
+    (9, 'Tanveer Ali', 'tanveer@example.com'),
+    (10, 'Foyzur Rahman', 'foyzur@example.com'),
+    (11, 'Abdallah Ahmed', 'abdallah@example.com'),
+    (12, 'Phillip Griffin', 'phillip@example.com'),
+    (13, 'Ava Taylor', 'ava@example.com'),
+    (14, 'James Anderson', 'james@example.com'),
+    (15, 'Mia Thomas', 'mia@example.com');
+
+
+Disable manual identity value insertion to restore default behavior
+SET IDENTITY_INSERT Customers OFF;
+
+
+Alter Bookings Table
+ALTER TABLE Bookings
+ADD Price DECIMAL(10, 2) DEFAULT 0.00;
+
+
+Create Employees Table
+CREATE TABLE [MuseumDB].[dbo].[Employees] (
+    [EmployeeID] INT IDENTITY(1,1) PRIMARY KEY,
+    [Name] NVARCHAR(100) NOT NULL,
+    [Position] NVARCHAR(100) NOT NULL
+);
+
+
+
+
+Wildlife Safari
+
+
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES (1, 1, '2025-02-06 12:43:04', '09:00:00', 0.00, 'Confirmed');
+
+
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES  (2, 1, '2025-02-06 12:45:00', '09:00:00', 0.00, 'Confirmed');
+
+
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES  (3, 1, '2025-02-06 12:50:00', '09:00:00', 0.00, 'Confirmed');
+
+
+
+
+ Ancient Ruins Tour
+
+
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES (4, 2, '2025-02-06 12:43:04', '09:00:00', 0.00, 'Confirmed');
+
+
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES (5, 2, '2025-02-06 12:43:04', '09:00:00', 0.00, 'Confirmed');
+
+
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES (6, 2, '2025-02-06 12:43:04', '09:00:00', 0.00, 'Confirmed');
+
+
+ Ocean Adventure
+
+
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES (7, 3, '2025-02-06 12:43:04', '09:00:00', 0.00, 'Confirmed');
+
+
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES (8, 3, '2025-02-06 12:43:04', '09:00:00', 0.00, 'Confirmed');
+
+
+
+
+
+
+
+
+
+
+Renaissance Wonders
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES  (9, 4, '2025-02-09 09:30:00', '10:00:00', 0.00, 'Confirmed');
+
+
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES (9, 4, '2025-02-09 09:30:00', '10:00:00', 0.00, 'Confirmed');
+
+
+
+
+
+
+Castle Legends
+
+
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES  (11, 5, '2025-02-10 12:00:00', '12:30:00', 0.00, 'Confirmed');
+
+
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES  (12, 5, '2025-02-10 12:15:00', '12:30:00', 0.00, 'Confirmed');
+
+
+ Deep Blue Exploration
+
+
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES  (13, 6, '2025-02-11 15:00:00', '15:00:00', 0.00, 'Confirmed');
+
+
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES  (14, 6, '2025-02-11 15:10:00', '15:00:00', 0.00, 'Confirmed');
+
+
+INSERT INTO Bookings (CustomerID, ExpeditionID, BookingDate, TimeSlot, Price, Status) 
+VALUES  (15, 6, '2025-02-11 15:20:00', '15:00:00', 0.00, 'Confirmed');
+
+
+
+
+Create Table Earnings
+CREATE TABLE Earnings ( Id INT IDENTITY(1,1) PRIMARY KEY, Amount DECIMAL(10, 2), DateAdded DATE );
